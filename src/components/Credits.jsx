@@ -41,18 +41,15 @@ const Credits = () => {
     },
   ];
   return (
-    <div class="p-4 sm:ml-64">
-      <header className="flex justify-between items-center ml-14 -mb-20 mt-16 ">
-        <h1 className="text-3xl font-bold"> Credits Purchase History</h1>
-      </header>
-      {/* <header className="flex justify-between items-center mt-28 ml-14 -mb-20 ">
-        <h1 className="text-3xl font-bold text-[#151515]">
-          {" "}
+    <div class="p-0 lg:p-4 lg:ml-64">
+      <header className="flex justify-between items-center ml-4 md:ml-14 lg:-mb-16 mt-24 ">
+        <h1 className=" ml-16 lg:ml-0 text-xl md:text-3xl font-bold">
           Credits Purchase History
         </h1>
-      </header> */}
-      <div className="flex justify-center items-center flex-col p-4 md:p-8 lg:p-12">
-        <div className="relative shadow-md sm:rounded-lg flex justify-center items-center overflow-auto bg-white w-[75vw] h-[28rem] mt-8 md:mt-12 lg:mt-16 mx-auto">
+      </header>
+
+      <div className="flex justify-center items-center flex-col -mx-3 md:p-8 lg:p-12">
+        <div className="relative shadow-md sm:rounded-lg flex justify-center items-center overflow-hidden bg-white xl:w-[75vw] h-[28rem] mt-8 md:mt-12 lg:mt-16 mx-10 md:mx-auto">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs  bg-white text-black border-b border-gray-200">
               <tr>
@@ -102,7 +99,7 @@ const Credits = () => {
               {products.map((product) => (
                 <tr
                   key={product.id}
-                  className="bg-white border-b border-gray-200 text-black text-sm md:text-base lg:text-lg"
+                  className="bg-white border-b border-gray-200 text-black text-[10px] md:text-base lg:text-lg"
                 >
                   <td className="w-4 p-4">
                     <div className="flex items-center">

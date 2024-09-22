@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { PiSquaresFourBold } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
 import { IoLayersOutline } from "react-icons/io5";
@@ -7,9 +7,11 @@ import { SlSettings } from "react-icons/sl";
 import { CiLogin } from "react-icons/ci";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FaBurger } from "react-icons/fa6";
-
+import { CiMenuBurger } from "react-icons/ci";
 const Sidebar = () => {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
   const links = [
     { icon: <PiSquaresFourBold />, name: "Search CV", href: "#" },
     { icon: <IoLayersOutline />, name: "Shortlisted CV", href: "/" },
@@ -24,26 +26,27 @@ const Sidebar = () => {
 
   return (
     <>
+      {/* Sidebar Toggle Button for small screens */}
       <button
-        data-drawer-target="default-sidebar"
-        data-drawer-toggle="default-sidebar"
-        aria-controls="default-sidebar"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-controls="sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="inline-flex items-center p-2 mt-2 ms-3 text-xl text-black font-bold rounded-lg lg:hidden  "
       >
-        <span className="sr-only">Open sidebar</span>
-        <i>
-          <FaBurger />
-        </i>
+        {/* <span className="sr-only">Open sidebar</span> */}
+        <CiMenuBurger className="text-2xl" />
       </button>
 
+      {/* Sidebar */}
       <aside
-        id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        id="sidebar"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen bg-white transition-transform transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 `}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-white">
-          <a className="flex items-center mx-4 my-3 mb-5">
+        <div className="h-full px-3 py-4 overflow-y-auto">
+          <div className="flex items-center mx-4 my-3 mb-5">
             <img
               src="public/vite.svg"
               className="h-6 me-3 sm:h-7"
@@ -52,7 +55,9 @@ const Sidebar = () => {
             <span className="self-center text-xl my-8 font-semibold whitespace-nowrap text-blue-700">
               AI CV
             </span>
-          </a>
+          </div>
+
+          {/* Links */}
           <ul className="font-medium m-4">
             <div className="flex flex-col gap-8">
               {links.map((link, index) => (
@@ -76,6 +81,7 @@ const Sidebar = () => {
                         ? "text-blue-600 hover:text-blue-600"
                         : ""
                     }`}
+                    onClick={() => setIsOpen(false)}
                   >
                     <span
                       className={`flex-1 text-sm ms-3 whitespace-nowrap hover:text-blue-400 ${
@@ -92,29 +98,46 @@ const Sidebar = () => {
               ))}
             </div>
 
-            <div className="flex flex-col absolute bottom-10 gap-6">
-              <li className="flex justify-center items-center text-[#ACACAC]">
-                <RiErrorWarningLine aria-hidden="true" />
+            {/* Bottom Links */}
+            <div className="flex flex-col absolute bottom-10 gap-8">
+              <li className="flex justify-center items-center text-[#ACACAC] gap-4">
+                <i className="text-2xl">
+                  <RiErrorWarningLine aria-hidden="true" />
+                </i>
                 <Link
                   to="#"
-                  className="flex items-center p-2 text-[#ACACAC] rounded-lg hover:text-blue-300"
+                  className="flex-1 text-sm ms-3 whitespace-nowrap hover:text-blue-400 rounded-lg "
+                  onClick={() => setIsOpen(false)} // Close sidebar on link click
                 >
-                  <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+                  <span className="flex ">Settings</span>
                 </Link>
               </li>
-              <li className="flex justify-center items-center text-[#ACACAC]">
-                <CiLogin aria-hidden="true" />
+              <li className="flex justify-center items-center text-[#ACACAC] ">
+                <i className="text-2xl">
+                  <CiLogin aria-hidden="true " />
+                </i>
                 <Link
                   to="#"
-                  className="flex items-center p-2 text-[#ACACAC] rounded-lg hover:text-blue-300"
+                  className="flex-1 text-sm ms-3 whitespace-nowrap hover:text-blue-400 rounded-lg"
+                  onClick={() => setIsOpen(false)} // Close sidebar on link click
                 >
-                  <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
+                  <span className="flex-1 ms-3 whitespace-nowrap">
+                    Sign Out
+                  </span>
                 </Link>
               </li>
             </div>
           </ul>
         </div>
       </aside>
+
+      {/* Overlay for small screens */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 lg:hidden"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
     </>
   );
 };

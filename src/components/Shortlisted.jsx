@@ -53,8 +53,8 @@ function Shortlisted() {
     },
   ];
   return (
-    <div class="p-0 sm:ml-64">
-      <div className="container mx-auto p-8 min-h-screen">
+    <div class="p-0 lg:ml-64">
+      <div className="container mx-auto p-0 lg:p-8 min-h-screen">
         <header className="flex justify-between items-center mt-16 mb-10">
           <h1 className="text-3xl font-bold">Shortlisted CV's</h1>
         </header>
@@ -69,7 +69,7 @@ function Shortlisted() {
                   type="checkbox"
                   className="h-4 w-4 rounded border-gray-300"
                 />
-                <div className="h-12 w-12 rounded-full bg-gray-200 flex justify-center items-center">
+                <div className="h-12 sm:w-24 lg:w-12 rounded-full bg-gray-200 flex justify-center items-center">
                   <img
                     src={cv.avatar}
                     alt={cv.name}
@@ -82,7 +82,7 @@ function Shortlisted() {
                       <h2 className="font-bold">{cv.name}</h2>
                       <p className="text-xs text-gray-500 w-24">{cv.title}</p>
                     </div>
-                    <p className="text-sm text-gray-600 w-[35rem]">
+                    <p className="text-[10px] max-w-xl lg:text-sm text-gray-600 hidden md:block">
                       {cv.description}
                     </p>
                   </div>
@@ -115,7 +115,9 @@ function Shortlisted() {
                     <i>
                       <TbDownload />
                     </i>
-                    <span>Download for 30 credits</span>
+                    <span className="text-[8px] w-24">
+                      Download for 30 credits
+                    </span>
                   </button>
 
                   <div className="bg-blue-600 text-2xl flex justify-center items-center w-6 h-4 mt-5 ">
